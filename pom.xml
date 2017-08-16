@@ -14,6 +14,7 @@
      		</resource>
    		</resources>
    		<plugins>
+   			<!-- Specify source version levels and main class. -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -26,6 +27,8 @@
 					</excludes>
 				</configuration>
 			</plugin>
+
+			<!-- Generates binding using Jnaerator -->
 			<plugin>
 				<groupId>com.nativelibs4java</groupId>
 				<artifactId>maven-jnaerator-plugin</artifactId>
@@ -38,6 +41,9 @@
 					</execution>
 				</executions>
 			</plugin>
+
+			<!-- Adds target/generated-sources to the source directory list so it will be automatically
+				added in Eclipse -->
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>build-helper-maven-plugin</artifactId>
@@ -54,6 +60,110 @@
 								<source>${project.build.directory}/generated-sources/java/</source>
 							</sources>
 						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- * Enables creation of INDEX.LIST to improve classloader performance. 
+				* Specifies the main class to make jar runnable. * Adds Implementation-Version 
+				info to jar manifest. * Creates a classpath entry in jar so that dependencies 
+				can be loaded directly. * Specifies a classpath prefix so that dependencies 
+				can be bundled in. -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.5</version>
+				<configuration>
+					<archive>
+						<index>true</index>
+						<manifest>
+							<classpathPrefix>lib/</classpathPrefix>
+							<addClasspath>true</addClasspath>
+							<mainClass>org.openpnp.capture.OpenPnpCapture</mainClass>
+							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+
+			<!-- Copies dependencies to target/lib for pickup by jar plugin. -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>2.8</version>
+				<executions>
+					<execution>
+						<id>copy-dependencies</id>
+						<phase>package</phase>
+						<goals>
+							<goal>copy-dependencies</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.build.directory}/lib</outputDirectory>
+							<overWriteReleases>true</overWriteReleases>
+							<overWriteSnapshots>true</overWriteSnapshots>
+							<overWriteIfNewer>true</overWriteIfNewer>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- Specifies the file encoding to be used when copying resources. -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.6</version>
+				<configuration>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+
+			<!-- Checks source code for common format violations and stops the build if any are found. -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>2.17</version>
+				<dependencies>
+					<dependency>
+						<groupId>com.puppycrawl.tools</groupId>
+						<artifactId>checkstyle</artifactId>
+						<version>7.6.1</version>
+					</dependency>
+				</dependencies>
+				<executions>
+					<execution>
+						<id>validate</id>
+						<phase>validate</phase>
+						<configuration>
+							<checkstyleRules>
+								<module name="Checker">
+									<module name="TreeWalker">
+										<module name="NeedBraces">
+										</module>
+										<module name="OneStatementPerLine">
+										</module>
+										<module name="MemberName">
+											<property name="format" value="^[a-z][a-zA-Z0-9_]*$"/>
+										</module>
+										<module name="TypeName">
+											<property name="format" value="^[A-Z][a-zA-Z0-9_]*$"/>
+										</module>
+										<module name="MethodName">
+										</module>
+										<module name="LocalVariableName">
+											<property name="format" value="^[a-z][a-zA-Z0-9_]*$"/>
+										</module>
+									</module>
+								</module>
+							</checkstyleRules>
+							<encoding>UTF-8</encoding>
+							<consoleOutput>true</consoleOutput>
+							<failsOnError>true</failsOnError>
+							<linkXRef>false</linkXRef>
+						</configuration>
+						<goals>
+							<goal>check</goal>
+						</goals>
 					</execution>
 				</executions>
 			</plugin>
