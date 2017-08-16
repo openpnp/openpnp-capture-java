@@ -34,3 +34,10 @@ You may set the system property jna.debug_load=true to make JNA print the steps 
 
 
 java -jar jnaerator/target/jnaerator-0.13-SNAPSHOT-shaded.jar -library openpnp-capture ~/Projects/openpnp/openpnp-capture/include/openpnp-capture.h -o ~/Desktop -mode Directory -f -runtime JNA
+
+# Release Process
+
+1. Update the openpnp-capture version in scripts/download-openpnp-capture.sh.
+2. Push tag to Github.
+
+Travis will build the tag and deploy it to Github at https://github.com/openpnp/openpnp-capture-java/releases/latest
