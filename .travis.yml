@@ -1,6 +1,6 @@
 language: java
 
-before_script: ./scripts/download-openpnp-capture v0.0.1
+before_install: ./scripts/download-openpnp-capture v0.0.1
 
 deploy:
   provider: releases
