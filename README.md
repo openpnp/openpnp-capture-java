@@ -1,3 +1,14 @@
+# Build
+See https://github.com/openpnp/openpnp-capture/releases to pick a release of the native
+library to build against and specify it's tag name in the next command.
+
+```
+./scripts/download-openpnp-capture.sh v0.0.1
+mvn clean package
+```
+
+# Development Notes
+
 Tested so far with a Mac library created in Xcode as a Cocoa dyamic library. Right clicked
 the product in Xcode, opened in Finder, copied path and made a symlink from target/classes/darwin
 to that directory. 
