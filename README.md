@@ -1,3 +1,6 @@
+Java bindings for https://github.com/openpnp/openpnp-capture. Releases include all platform binaries
+and support auto extraction for a "plug and play" experience.
+
 # Build
 See https://github.com/openpnp/openpnp-capture/releases to pick a release of the native
 library to build against and specify it's tag name in the next command.
