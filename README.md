@@ -14,7 +14,7 @@ mvn clean package
 
 # Release
 
-1. Update the openpnp-capture version in scripts/download-openpnp-capture.sh.
+1. Update the openpnp-capture version in `scripts/download-openpnp-capture.sh`.
 2. Push tag to Github.
 
 Travis will build the tag and deploy it to Github at https://github.com/openpnp/openpnp-capture-java/releases/latest
