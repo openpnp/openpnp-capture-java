@@ -1,3 +1,6 @@
 target
 openpnp-capture
 dependency-reduced-pom.xml
+.classpath
+.project
+.settings

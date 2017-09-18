@@ -1,20 +1,56 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>openpnp-capture</groupId>
+	<groupId>org.openpnp</groupId>
 	<artifactId>openpnp-capture-java</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.2-2</version>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
+	<licenses>
+		<license>
+			<name>MIT License</name>
+			<url>https://opensource.org/licenses/MIT</url>
+		</license>
+	</licenses>
+
+	<name>OpenPnP Capture Java Bindings</name>
+	<description>OpenPnP Capture Java with all binaries included, packaged for Maven.</description>
+	<url>http://github.com/openpnp/openpnp-capture-java</url>
+
+	<scm>
+		<url>https://github.com/openpnp/openpnp-capture</url>
+		<connection>scm:git:http://github.com/openpnp/openpnp-capture.git</connection>
+		<developerConnection>scm:git:http://github.com/openpnp/openpnp-capture.git</developerConnection>
+		<tag>v0.0.2</tag>
+	</scm>
+
+	<issueManagement>
+		<system>GitHub</system>
+		<url>http://github.com/openpnp/opencv/issues</url>
+	</issueManagement>
+
+	<developers>
+		<developer>
+			<id>vonnieda</id>
+			<name>Jason von Nieda</name>
+			<email>jason@vonnieda.org</email>
+			<organization>OpenPnP</organization>
+			<organizationUrl>http://openpnp.org</organizationUrl>
+			<roles>
+				<role>maintainer</role>
+			</roles>
+		</developer>
+	</developers>
+
 	<build>
 		<resources>
-     		<resource>
-       			<directory>openpnp-capture/binaries</directory>
-     		</resource>
-   		</resources>
-   		<plugins>
-   			<!-- Specify source version levels and main class. -->
+			<resource>
+				<directory>openpnp-capture/binaries</directory>
+			</resource>
+		</resources>
+		<plugins>
+			<!-- Specify source version levels and main class. -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -42,8 +78,8 @@
 				</executions>
 			</plugin>
 
-			<!-- Adds target/generated-sources to the source directory list so it will be automatically
-				added in Eclipse -->
+			<!-- Adds target/generated-sources to the source directory list so it 
+				will be automatically added in Eclipse -->
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>build-helper-maven-plugin</artifactId>
@@ -66,29 +102,32 @@
 
 			<!-- Creates a shaded "uber" jar that contains the entire library. -->
 			<plugin>
-        		<groupId>org.apache.maven.plugins</groupId>
-        		<artifactId>maven-shade-plugin</artifactId>
-        		<version>3.0.0</version>
-        		<configuration>
-		        </configuration>
-			        <executions>
-          				<execution>
-				            <phase>package</phase>
-            				<goals>
-								<goal>shade</goal>
-            				</goals>
-							<configuration>
-              					<transformers>
-                					<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                  						<mainClass>org.openpnp.capture.OpenPnpCapture</mainClass>
-                					</transformer>
-              					</transformers>
-            				</configuration>          				
-            			</execution>
-        			</executions>
-      		</plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>3.0.0</version>
+				<configuration>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+						<configuration>
+							<transformers>
+								<transformer
+									implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+									<mainClass>org.openpnp.capture.OpenPnpCapture</mainClass>
+								</transformer>
+							</transformers>
+							<shadedArtifactAttached>true</shadedArtifactAttached>
+							<shadedClassifierName>shaded</shadedClassifierName>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 
-  			<!-- Specifies the file encoding to be used when copying resources. -->
+			<!-- Specifies the file encoding to be used when copying resources. -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-resources-plugin</artifactId>
@@ -98,11 +137,15 @@
 				</configuration>
 			</plugin>
 
-			<!-- Checks source code for common format violations and stops the build if any are found. -->
+			<!-- Checks source code for common format violations and stops the build 
+				if any are found. -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-checkstyle-plugin</artifactId>
 				<version>2.17</version>
+				<configuration>
+					<sourceDirectory>${project.build.sourceDirectory}</sourceDirectory>
+				</configuration>
 				<dependencies>
 					<dependency>
 						<groupId>com.puppycrawl.tools</groupId>
@@ -123,15 +166,15 @@
 										<module name="OneStatementPerLine">
 										</module>
 										<module name="MemberName">
-											<property name="format" value="^[a-z][a-zA-Z0-9_]*$"/>
+											<property name="format" value="^[a-z][a-zA-Z0-9_]*$" />
 										</module>
 										<module name="TypeName">
-											<property name="format" value="^[A-Z][a-zA-Z0-9_]*$"/>
+											<property name="format" value="^[A-Z][a-zA-Z0-9_]*$" />
 										</module>
 										<module name="MethodName">
 										</module>
 										<module name="LocalVariableName">
-											<property name="format" value="^[a-z][a-zA-Z0-9_]*$"/>
+											<property name="format" value="^[a-z][a-zA-Z0-9_]*$" />
 										</module>
 									</module>
 								</module>
@@ -147,6 +190,68 @@
 					</execution>
 				</executions>
 			</plugin>
+
+			<!-- Include sources -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>2.2.1</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar-no-fork</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- Include JavaDocs -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.9.1</version>
+				<configuration>
+					<additionalparam>-Xdoclint:none</additionalparam>
+				</configuration>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- Allows simple deployment to Central with mvn clean deploy -->
+			<plugin>
+				<groupId>org.sonatype.plugins</groupId>
+				<artifactId>nexus-staging-maven-plugin</artifactId>
+				<version>1.6.7</version>
+				<extensions>true</extensions>
+				<configuration>
+					<serverId>ossrh</serverId>
+					<nexusUrl>https://oss.sonatype.org/</nexusUrl>
+					<autoReleaseAfterClose>true</autoReleaseAfterClose>
+				</configuration>
+			</plugin>
+
+			<!-- Signs artifacts before deployment -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-gpg-plugin</artifactId>
+				<version>1.5</version>
+				<executions>
+					<execution>
+						<id>sign-artifacts</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>sign</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 	<dependencies>
@@ -154,6 +259,12 @@
 			<groupId>com.nativelibs4java</groupId>
 			<artifactId>jnaerator-runtime</artifactId>
 			<version>0.12</version>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 </project>
