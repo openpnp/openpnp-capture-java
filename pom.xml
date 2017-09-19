@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.openpnp</groupId>
 	<artifactId>openpnp-capture-java</artifactId>
-	<version>0.0.2-2</version>
+	<version>0.0.2-3</version>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
@@ -22,7 +22,6 @@
 		<url>https://github.com/openpnp/openpnp-capture</url>
 		<connection>scm:git:http://github.com/openpnp/openpnp-capture.git</connection>
 		<developerConnection>scm:git:http://github.com/openpnp/openpnp-capture.git</developerConnection>
-		<tag>v0.0.2</tag>
 	</scm>
 
 	<issueManagement>

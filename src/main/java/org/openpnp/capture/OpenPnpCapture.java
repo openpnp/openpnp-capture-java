@@ -24,6 +24,19 @@ public class OpenPnpCapture {
         return devices;
     }
     
+    public void close() {
+        OpenpnpCaptureLibrary.INSTANCE.Cap_releaseContext(context);
+    }
+
+    public static String fourCcToString(int fourCc) {
+        String s = "";
+        for (int i = 0; i < 4; i++) {
+            s += (char) (fourCc & 0xff);
+            fourCc >>= 8;
+        }
+        return s;
+    }
+    
     // Library prefixes
     // darwin
     // win32-x86
