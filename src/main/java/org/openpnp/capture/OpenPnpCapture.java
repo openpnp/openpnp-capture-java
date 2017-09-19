@@ -1,5 +1,6 @@
 package org.openpnp.capture;
 
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,7 +46,9 @@ public class OpenPnpCapture {
     // linux-x86-64
     public static void main(String[] args) {
         OpenPnpCapture capture = new OpenPnpCapture();
-        List<CaptureDevice> devices = capture.getDevices();
-        System.out.println(devices);
+        CaptureDevice device = capture.getDevices().get(0);
+        CaptureFormat format = device.getFormats().get(0);
+        CaptureStream stream = device.openStream(format);
+        BufferedImage image = stream.capture();
     }
 }
