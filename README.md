@@ -37,12 +37,15 @@ mvn clean package
 
 # Release
 
-To release a new version to Maven central:
+To release a new version to Github Releases and Maven central:
 
 1. Choose an OpenPnP Capture release from https://github.com/openpnp/openpnp-capture/releases.
-2. `./scripts/download-openpnp-capture.sh <RELEASE>`
-3. Set versions in `pom.xml`. Should match release. Append `-n` for sub-releases.
-4. `mvn clean deploy`
+2. Update the `before_install` line in `.travis.yml` to include that release name.
+3. Update the version in `pom.xml`. Should match release. Append `-n` for sub-releases.
+4. Run `./scripts/download-openpnp-capture.sh <RELEASE>`
+5. `mvn clean deploy`
+6. Tag the release with the new version number and push to master.
+7. Travis will build the release and post it to Github.
 
 The deploy step requires credentials and private keys for Sonatype. Please contact
-a maintainer to discuss a public release.
+a maintainer to discuss a Maven release.
