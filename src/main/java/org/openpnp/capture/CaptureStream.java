@@ -24,9 +24,22 @@ public class CaptureStream {
     public void close() {
         OpenpnpCaptureLibrary.INSTANCE.Cap_closeStream(context, streamId);
     }
+    
+    public Pointer getContext() {
+        return context;
+    }
 
+    public int getStreamId() {
+        return streamId;
+    }
+    
+    public CaptureFormat getFormat() {
+        return format;
+    }
+    
+    // TODO: Color seems to be correct, but the array types are different. Library returns RBG and
+    // the buffered image is BGR. Not sure why it's working.
     public synchronized BufferedImage capture() {
-        // TODO: This is very inefficient. Figure out how to not call getByteArray().
         int res = OpenpnpCaptureLibrary.INSTANCE.Cap_captureFrame(context, streamId, memory,
                 (int) memory.size());
         if (res != OpenpnpCaptureLibrary.CAPRESULT_OK) {
@@ -34,7 +47,7 @@ public class CaptureStream {
         }
         BufferedImage image = new BufferedImage(format.formatInfo.width,
                 format.formatInfo.height, BufferedImage.TYPE_3BYTE_BGR);
-        byte[] bytes = memory.getByteArray(0, (int) memory.size());            
+        byte[] bytes = memory.getByteArray(0, (int) memory.size());
         image.getRaster().setDataElements(0, 0, image.getWidth(), image.getHeight(), bytes);
         return image;
     }

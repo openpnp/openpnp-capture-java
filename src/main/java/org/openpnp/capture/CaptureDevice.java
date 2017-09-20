@@ -56,4 +56,18 @@ public class CaptureDevice {
     public List<CaptureFormat> getFormats() {
         return Collections.unmodifiableList(formats);
     }
+
+    @Override
+    public int hashCode() {
+        return uniqueId.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof CaptureDevice)) {
+            return false;
+        }
+        CaptureDevice dev = (CaptureDevice) obj;
+        return dev.uniqueId.equals(this.uniqueId);
+    }
 }

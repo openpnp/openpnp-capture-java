@@ -39,6 +39,9 @@ mvn clean package
 
 To release a new version to Github Releases and Maven central:
 
+Note, on OS X it may be neccessary to run `export GPG_TTY=$(tty)` before running
+the below commands. See https://github.com/pstadler/keybase-gpg-github/issues/11.
+
 1. Choose an OpenPnP Capture release from https://github.com/openpnp/openpnp-capture/releases.
 2. Update the `before_install` line in `.travis.yml` to include that release name.
 3. Update the version in `pom.xml`. Should match release. Append `-n` for sub-releases.

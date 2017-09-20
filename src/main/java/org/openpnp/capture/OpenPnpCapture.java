@@ -28,6 +28,10 @@ public class OpenPnpCapture {
     public void close() {
         OpenpnpCaptureLibrary.INSTANCE.Cap_releaseContext(context);
     }
+    
+    public Pointer getContext() {
+        return context;
+    }
 
     public static String fourCcToString(int fourCc) {
         String s = "";
@@ -38,12 +42,6 @@ public class OpenPnpCapture {
         return s;
     }
     
-    // Library prefixes
-    // darwin
-    // win32-x86
-    // win32-x86-64
-    // linux-x86
-    // linux-x86-64
     public static void main(String[] args) {
         OpenPnpCapture capture = new OpenPnpCapture();
         CaptureDevice device = capture.getDevices().get(0);
