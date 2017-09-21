@@ -1,6 +1,7 @@
 package org.openpnp.capture;
 
 import java.awt.image.BufferedImage;
+import java.nio.IntBuffer;
 
 import org.openpnp.capture.library.OpenpnpCaptureLibrary;
 
@@ -24,7 +25,7 @@ public class CaptureStream {
     public void close() {
         OpenpnpCaptureLibrary.INSTANCE.Cap_closeStream(context, streamId);
     }
-    
+
     public Pointer getContext() {
         return context;
     }
@@ -32,28 +33,67 @@ public class CaptureStream {
     public int getStreamId() {
         return streamId;
     }
-    
+
     public CaptureFormat getFormat() {
         return format;
     }
-    
-    // TODO: Color seems to be correct, but the array types are different. Library returns RBG and
-    // the buffered image is BGR. Not sure why it's working.
-    public synchronized BufferedImage capture() {
-        int res = OpenpnpCaptureLibrary.INSTANCE.Cap_captureFrame(context, streamId, memory,
-                (int) memory.size());
-        if (res != OpenpnpCaptureLibrary.CAPRESULT_OK) {
-            return null;
+
+    public PropertyLimits getPropertyLimits(CaptureProperty property) throws Exception {
+        IntBuffer min = IntBuffer.allocate(1);
+        IntBuffer max = IntBuffer.allocate(1);
+        int result = OpenpnpCaptureLibrary.INSTANCE.Cap_getPropertyLimits(context, streamId,
+                property.getPropertyId(), min, max);
+        if (result != OpenpnpCaptureLibrary.CAPRESULT_OK) {
+            throw new Exception(OpenPnpCapture.getResultDescription(result));
         }
-        BufferedImage image = new BufferedImage(format.formatInfo.width,
-                format.formatInfo.height, BufferedImage.TYPE_3BYTE_BGR);
-        byte[] bytes = memory.getByteArray(0, (int) memory.size());
-        image.getRaster().setDataElements(0, 0, image.getWidth(), image.getHeight(), bytes);
+        PropertyLimits limits = new PropertyLimits(min.get(0), max.get(0));
+        return limits;
+    }
+
+    public void setAutoProperty(CaptureProperty property, boolean on) throws Exception {
+        int result = OpenpnpCaptureLibrary.INSTANCE.Cap_setAutoProperty(context, streamId,
+                property.getPropertyId(), on ? 1 : 0);
+        if (result != OpenpnpCaptureLibrary.CAPRESULT_OK) {
+            throw new Exception(OpenPnpCapture.getResultDescription(result));
+        }
+    }
+    
+    public void setProperty(CaptureProperty property, int value) throws Exception {
+        int result = OpenpnpCaptureLibrary.INSTANCE.Cap_setProperty(context, streamId,
+                property.getPropertyId(), value);
+        if (result != OpenpnpCaptureLibrary.CAPRESULT_OK) {
+            throw new Exception(OpenPnpCapture.getResultDescription(result));
+        }
+    }
+
+    public BufferedImage capture() {
+        byte[] bytes;
+
+        synchronized (memory) {
+            int res = OpenpnpCaptureLibrary.INSTANCE.Cap_captureFrame(context, streamId, memory,
+                    (int) memory.size());
+            if (res != OpenpnpCaptureLibrary.CAPRESULT_OK) {
+                return null;
+            }
+            bytes = memory.getByteArray(0, (int) memory.size());
+        }
+
+        // Note: I assumed that setting an RGB buffer on a BGR image would result in R and B
+        // swapped, but that doesn't seem to happen. I tested with manually converting
+        // to ARGB and that worked too, so now my working assumption is that setDataElements
+        // always expects RGB and converts to the BufferedImage's color model.
+        BufferedImage image = new BufferedImage(format.formatInfo.width, format.formatInfo.height,
+                BufferedImage.TYPE_3BYTE_BGR);
+        image.getRaster()
+             .setDataElements(0, 0, image.getWidth(), image.getHeight(), bytes);
+
         return image;
     }
 
+
+
     @Override
     public String toString() {
-        return String.format("%d", streamId);
+        return String.format("%d: %s", streamId, format);
     }
 }

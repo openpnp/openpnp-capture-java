@@ -32,6 +32,27 @@ public class OpenPnpCapture {
     public Pointer getContext() {
         return context;
     }
+    
+    public String getLibraryVersion() {
+        return OpenpnpCaptureLibrary.INSTANCE.Cap_getLibraryVersion().getString(0, "UTF8");
+    }
+    
+    public static String getResultDescription(int result) {
+        switch (result) {
+            case OpenpnpCaptureLibrary.CAPRESULT_OK:
+                return "OK";
+            case OpenpnpCaptureLibrary.CAPRESULT_ERR:
+                return "Error";
+            case OpenpnpCaptureLibrary.CAPRESULT_DEVICENOTFOUND:
+                return "Device Not Found";
+            case OpenpnpCaptureLibrary.CAPRESULT_FORMATNOTSUPPORTED:
+                return "Format Not Supported";
+            case OpenpnpCaptureLibrary.CAPRESULT_PROPERTYNOTSUPPORTED:
+                return "Property Not Supported";
+            default:
+                return "" + result;
+        }
+    }
 
     public static String fourCcToString(int fourCc) {
         String s = "";
