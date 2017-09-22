@@ -1,4 +1,4 @@
-# openpnp-capture-java
+![OpenPNP Logo](https://raw.githubusercontent.com/openpnp/openpnp-logo/develop/logo_small.png)
 
 Java bindings for https://github.com/openpnp/openpnp-capture. Releases include all platform binaries
 and support auto extraction for a "plug and play" experience. Simply install the Maven dependency
