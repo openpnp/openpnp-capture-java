@@ -63,7 +63,7 @@ public class OpenPnpCapture {
         return s;
     }
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         OpenPnpCapture capture = new OpenPnpCapture();
         CaptureDevice device = capture.getDevices().get(0);
         CaptureFormat format = device.getFormats().get(0);

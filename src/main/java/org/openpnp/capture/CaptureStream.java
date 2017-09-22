@@ -44,7 +44,7 @@ public class CaptureStream {
         int result = OpenpnpCaptureLibrary.INSTANCE.Cap_getPropertyLimits(context, streamId,
                 property.getPropertyId(), min, max);
         if (result != OpenpnpCaptureLibrary.CAPRESULT_OK) {
-            throw new Exception(OpenPnpCapture.getResultDescription(result));
+            throw new CaptureException(result);
         }
         PropertyLimits limits = new PropertyLimits(min.get(0), max.get(0));
         return limits;
@@ -62,7 +62,7 @@ public class CaptureStream {
         int result = OpenpnpCaptureLibrary.INSTANCE.Cap_setProperty(context, streamId,
                 property.getPropertyId(), value);
         if (result != OpenpnpCaptureLibrary.CAPRESULT_OK) {
-            throw new Exception(OpenPnpCapture.getResultDescription(result));
+            throw new CaptureException(result);
         }
     }
     
@@ -71,7 +71,7 @@ public class CaptureStream {
         int result = OpenpnpCaptureLibrary.INSTANCE.Cap_getAutoProperty(context, streamId, 
                 property.getPropertyId(), value);
         if (result != OpenpnpCaptureLibrary.CAPRESULT_OK) {
-            throw new Exception(OpenPnpCapture.getResultDescription(result));
+            throw new CaptureException(result);
         }
         return value.get(0) == 0 ? false : true;
     }
@@ -81,19 +81,19 @@ public class CaptureStream {
         int result = OpenpnpCaptureLibrary.INSTANCE.Cap_getProperty(context, streamId, 
                 property.getPropertyId(), value);
         if (result != OpenpnpCaptureLibrary.CAPRESULT_OK) {
-            throw new Exception(OpenPnpCapture.getResultDescription(result));
+            throw new CaptureException(result);
         }
         return value.get(0);
     }
 
-    public BufferedImage capture() {
+    public BufferedImage capture() throws Exception {
         byte[] bytes;
 
         synchronized (memory) {
-            int res = OpenpnpCaptureLibrary.INSTANCE.Cap_captureFrame(context, streamId, memory,
+            int result = OpenpnpCaptureLibrary.INSTANCE.Cap_captureFrame(context, streamId, memory,
                     (int) memory.size());
-            if (res != OpenpnpCaptureLibrary.CAPRESULT_OK) {
-                return null;
+            if (result != OpenpnpCaptureLibrary.CAPRESULT_OK) {
+                throw new CaptureException(result);
             }
             bytes = memory.getByteArray(0, (int) memory.size());
         }
