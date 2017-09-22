@@ -65,6 +65,26 @@ public class CaptureStream {
             throw new Exception(OpenPnpCapture.getResultDescription(result));
         }
     }
+    
+    public boolean getAutoProperty(CaptureProperty property) throws Exception {
+        IntBuffer value = IntBuffer.allocate(1);
+        int result = OpenpnpCaptureLibrary.INSTANCE.Cap_getAutoProperty(context, streamId, 
+                property.getPropertyId(), value);
+        if (result != OpenpnpCaptureLibrary.CAPRESULT_OK) {
+            throw new Exception(OpenPnpCapture.getResultDescription(result));
+        }
+        return value.get(0) == 0 ? false : true;
+    }
+
+    public int getProperty(CaptureProperty property) throws Exception {
+        IntBuffer value = IntBuffer.allocate(1);
+        int result = OpenpnpCaptureLibrary.INSTANCE.Cap_getProperty(context, streamId, 
+                property.getPropertyId(), value);
+        if (result != OpenpnpCaptureLibrary.CAPRESULT_OK) {
+            throw new Exception(OpenPnpCapture.getResultDescription(result));
+        }
+        return value.get(0);
+    }
 
     public BufferedImage capture() {
         byte[] bytes;
