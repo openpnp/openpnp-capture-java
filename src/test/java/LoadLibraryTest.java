@@ -4,6 +4,7 @@ import org.openpnp.capture.OpenPnpCapture;
 public class LoadLibraryTest {
     @Test
     public void testLoadLibrary() {
-        new OpenPnpCapture();
+        OpenPnpCapture capture = new OpenPnpCapture();
+        System.out.println("Version: " + capture.getLibraryVersion());
     }
 }
