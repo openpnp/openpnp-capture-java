@@ -1,5 +1,11 @@
 language: java
 
+addons:
+  apt:
+    packages:
+    - libturbojpeg
+    - libjpeg-turbo8-dev
+
 install: true
 
 before_install: ./scripts/download-openpnp-capture.sh v0.0.5
