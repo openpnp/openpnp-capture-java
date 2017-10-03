@@ -18,9 +18,11 @@ curl -L -o openpnp-capture/source.tar.gz https://github.com/openpnp/openpnp-capt
 tar -C openpnp-capture -xzf openpnp-capture/source.tar.gz --strip 1
 
 mkdir -p openpnp-capture/binaries/darwin
+mkdir -p openpnp-capture/binaries/win32-x86
 mkdir -p openpnp-capture/binaries/win32-x86-64
 mkdir -p openpnp-capture/binaries/linux-x86-64
 
 curl -L -o openpnp-capture/binaries/darwin/libopenpnp-capture.dylib https://github.com/openpnp/openpnp-capture/releases/download/$1/libopenpnp-capture.dylib
-curl -L -o openpnp-capture/binaries/win32-x86-64/openpnp-capture.dll https://github.com/openpnp/openpnp-capture/releases/download/$1/openpnp-capture.dll
+curl -L -o openpnp-capture/binaries/win32-x86/openpnp-capture.dll https://github.com/openpnp/openpnp-capture/releases/download/$1/openpnp-capture_Win32.dll
+curl -L -o openpnp-capture/binaries/win32-x86-64/openpnp-capture.dll https://github.com/openpnp/openpnp-capture/releases/download/$1/openpnp-capture_x64.dll
 curl -L -o openpnp-capture/binaries/linux-x86-64/libopenpnp-capture.so https://github.com/openpnp/openpnp-capture/releases/download/$1/libopenpnp-capture.so
