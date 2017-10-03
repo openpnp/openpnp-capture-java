@@ -2,7 +2,7 @@
 
 # openpnp-capture-java
 
-Java bindings for https://github.com/openpnp/openpnp-capture. Releases include all platform binaries
+Java bindings for [the openpnp-capture video capture library](https://github.com/openpnp/openpnp-capture). Releases include all platform binaries
 and support auto extraction for a "plug and play" experience. Simply install the Maven dependency
 and start capturing!
 
