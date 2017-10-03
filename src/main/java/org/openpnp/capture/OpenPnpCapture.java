@@ -65,6 +65,7 @@ public class OpenPnpCapture {
     
     public static void main(String[] args) throws Exception {
         OpenPnpCapture capture = new OpenPnpCapture();
+        System.out.println(capture.getLibraryVersion());
         CaptureDevice device = capture.getDevices().get(0);
         CaptureFormat format = device.getFormats().get(0);
         CaptureStream stream = device.openStream(format);
