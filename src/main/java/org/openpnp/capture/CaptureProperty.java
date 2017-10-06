@@ -3,11 +3,16 @@ package org.openpnp.capture;
 import org.openpnp.capture.library.OpenpnpCaptureLibrary;
 
 public enum CaptureProperty {
+    Brightness(OpenpnpCaptureLibrary.CAPPROPID_BRIGHTNESS),
+    Contrast(OpenpnpCaptureLibrary.CAPPROPID_CONTRAST),
     Exposure(OpenpnpCaptureLibrary.CAPPROPID_EXPOSURE),
     Focus(OpenpnpCaptureLibrary.CAPPROPID_FOCUS),
-    Zoom(OpenpnpCaptureLibrary.CAPPROPID_ZOOM),
+    Gain(OpenpnpCaptureLibrary.CAPPROPID_GAIN),
+    Gamma(OpenpnpCaptureLibrary.CAPPROPID_GAMMA),
+    Saturation(OpenpnpCaptureLibrary.CAPPROPID_SATURATION),
     WhiteBalance(OpenpnpCaptureLibrary.CAPPROPID_WHITEBALANCE),
-    Gain(OpenpnpCaptureLibrary.CAPPROPID_GAIN);
+    Zoom(OpenpnpCaptureLibrary.CAPPROPID_ZOOM)
+    ;
     
     final int propertyId;
     

@@ -41,12 +41,13 @@ public class CaptureStream {
     public PropertyLimits getPropertyLimits(CaptureProperty property) throws Exception {
         IntBuffer min = IntBuffer.allocate(1);
         IntBuffer max = IntBuffer.allocate(1);
+        IntBuffer def = IntBuffer.allocate(1);
         int result = OpenpnpCaptureLibrary.INSTANCE.Cap_getPropertyLimits(context, streamId,
-                property.getPropertyId(), min, max);
+                property.getPropertyId(), min, max, def);
         if (result != OpenpnpCaptureLibrary.CAPRESULT_OK) {
             throw new CaptureException(result);
         }
-        PropertyLimits limits = new PropertyLimits(min.get(0), max.get(0));
+        PropertyLimits limits = new PropertyLimits(min.get(0), max.get(0), def.get(0));
         return limits;
     }
 
