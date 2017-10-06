@@ -2,7 +2,7 @@ language: java
 
 install: true
 
-before_install: ./scripts/download-openpnp-capture.sh v0.0.9
+before_install: ./scripts/download-openpnp-capture.sh V0.0.10
 
 script: mvn clean package
 
