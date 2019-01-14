@@ -110,8 +110,10 @@ public class CaptureStream {
 
         return image;
     }
-
-
+    
+    public boolean hasNewFrame() {
+        return OpenpnpCaptureLibrary.INSTANCE.Cap_hasNewFrame(context, streamId) == 1;
+    }
 
     @Override
     public String toString() {
