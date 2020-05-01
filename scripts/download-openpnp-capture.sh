@@ -22,4 +22,4 @@ curl -L -o openpnp-capture/binaries/darwin/libopenpnp-capture.dylib https://gith
 curl -L -o openpnp-capture/binaries/win32-x86/openpnp-capture.dll https://github.com/openpnp/openpnp-capture/releases/download/$1/openpnp-capture_Win32.dll
 curl -L -o openpnp-capture/binaries/win32-x86-64/openpnp-capture.dll https://github.com/openpnp/openpnp-capture/releases/download/$1/openpnp-capture_x64.dll
 curl -L -o openpnp-capture/binaries/linux-x86-64/libopenpnp-capture.so https://github.com/openpnp/openpnp-capture/releases/download/$1/libopenpnp-capture.so
-curl -L -o openpnp-capture/binaries/linux-arm64/libopenpnp-capture-arm64.so https://github.com/openpnp/openpnp-capture/releases/download/$1/libopenpnp-capture-arm64.so
+curl -L -o openpnp-capture/binaries/linux-arm64/libopenpnp-capture.so https://github.com/openpnp/openpnp-capture/releases/download/$1/libopenpnp-capture-arm64.so
