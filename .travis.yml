@@ -5,7 +5,7 @@ jdk:
 
 install: true
 
-before_install: ./scripts/download-openpnp-capture.sh v0.0.19
+before_install: ./scripts/download-openpnp-capture.sh v0.0.21
 
 script: mvn clean package
 
