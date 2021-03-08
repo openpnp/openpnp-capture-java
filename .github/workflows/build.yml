@@ -21,6 +21,11 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: ${{ matrix.java }}
+          server-id: ossrh
+          server-username: OSSRH_USERNAME
+          server-password: OSSRH_PASSWORD
+          gpg-private-key: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
+          gpg-passphrase: MAVEN_GPG_PASSPHRASE
 
       - name: Build
         run: |
@@ -39,4 +44,12 @@ jobs:
         with:
             artifacts: "target/openpnp-capture-java*.jar"
             token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish to Apache Maven Central
+#        if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
+        run: mvn -B deploy
+        env:
+          OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+          OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
+          MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
 
