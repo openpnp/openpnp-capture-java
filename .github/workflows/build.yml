@@ -33,9 +33,9 @@ jobs:
           path: |
             target/openpnp-capture-java-*.jar
 
-      - name: Create a Release
-        uses: elgohr/Github-Release-Action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+      - name: Create Release
+        uses: ncipollo/release-action@v1
         with:
-          args: Test Release  
+            artifacts: "target/openpnp-capture-java*.jar"
+            token: ${{ secrets.GITHUB_TOKEN }}
+            
