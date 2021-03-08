@@ -22,10 +22,6 @@ jobs:
         with:
           java-version: ${{ matrix.java }}
 
-      - name: Get Version Info
-        run: |
-          echo "POM_VERSION=$(mvn build-helper:parse-version org.apache.maven.plugins:maven-help-plugin:3.2.0:evaluate -Dexpression=project.version -q -DforceStdout)" >> $GITHUB_ENV
-
       - name: Build
         run: |
           ./scripts/download-openpnp-capture.sh v0.0.22
@@ -41,3 +37,5 @@ jobs:
         uses: elgohr/Github-Release-Action@master
         env:
           GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+        with:
+          args: Test Release  
