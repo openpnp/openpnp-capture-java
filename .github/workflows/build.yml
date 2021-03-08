@@ -1,0 +1,42 @@
+name: Build OpenPnP Capture Java Distribution
+
+on: 
+  push:
+  pull_request:
+
+jobs:
+  build: 
+    strategy:
+      matrix:
+        os: [ubuntu-18.04]
+        java: [8]
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+
+      - name: Setup JDK ${{ matrix.java }}
+        uses: actions/setup-java@v1
+        with:
+          java-version: ${{ matrix.java }}
+
+      - name: Build
+        run: |
+          ./scripts/download-openpnp-capture.sh v0.0.22
+          mvn -B clean package
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v2
+        with: 
+          path: |
+            target/openpnp-capture-java-*.jar
+
+      - name: Create Release
+        if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
+        uses: ncipollo/release-action@v1
+        with:
+            artifacts: "target/openpnp-capture-java*.jar"
+            token: ${{ secrets.GITHUB_TOKEN }}
+
