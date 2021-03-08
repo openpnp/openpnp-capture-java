@@ -38,19 +38,15 @@ mvn clean package
 ```
 
 # Release
+Releases are built automatically using Github Actions. Binaries for non-tagged
+commits can be downloaded from the Actions tab. Binaries for tagged releases
+are deployed to Maven Central and Github Releases.
 
 To release a new version to Github Releases and Maven central:
 
-Note, on OS X it may be neccessary to run `export GPG_TTY=$(tty)` before running
-the below commands. See https://github.com/pstadler/keybase-gpg-github/issues/11.
-
 1. Choose an OpenPnP Capture release from https://github.com/openpnp/openpnp-capture/releases.
-2. Update the `before_install` line in `.travis.yml` to include that release name.
+2. Update the version line in `.github/workflows/build.yml` to include that release name.
 3. Update the version in `pom.xml`. Should match release. Append `-n` for sub-releases.
-4. Run `./scripts/download-openpnp-capture.sh <RELEASE>`
-5. `mvn clean deploy`
-6. Tag the release with the new version number and push to master.
-7. Travis will build the release and post it to Github.
-
-The deploy step requires credentials and private keys for Sonatype. Please contact
-a maintainer to discuss a Maven release.
+4. Commit and tag the changes with the new version number.
+5. Push to master.
+7. Github Actions will build and deploy the release.
