@@ -57,25 +57,25 @@
 				<configuration>
 					<source>1.8</source>
 					<target>1.8</target>
-					<mainClass>org.openpnp.capture.OpenPnpCapture</mainClass>
+<!--					<mainClass>org.openpnp.capture.OpenPnpCapture</mainClass>-->
 					<excludes>
 					</excludes>
 				</configuration>
 			</plugin>
 
 			<!-- Generates binding using Jnaerator -->
-			<plugin>
-				<groupId>com.nativelibs4java</groupId>
-				<artifactId>maven-jnaerator-plugin</artifactId>
-				<version>0.12</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>generate</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
+<!--			<plugin>-->
+<!--				<groupId>com.nativelibs4java</groupId>-->
+<!--				<artifactId>maven-jnaerator-plugin</artifactId>-->
+<!--				<version>0.12</version>-->
+<!--				<executions>-->
+<!--					<execution>-->
+<!--						<goals>-->
+<!--							<goal>generate</goal>-->
+<!--						</goals>-->
+<!--					</execution>-->
+<!--				</executions>-->
+<!--			</plugin>-->
 
 			<!-- Adds target/generated-sources to the source directory list so it 
 				will be automatically added in Eclipse -->
@@ -181,7 +181,7 @@
 							<encoding>UTF-8</encoding>
 							<consoleOutput>true</consoleOutput>
 							<failsOnError>true</failsOnError>
-							<linkXRef>false</linkXRef>
+<!--							<linkXRef>false</linkXRef>-->
 						</configuration>
 						<goals>
 							<goal>check</goal>
@@ -285,28 +285,28 @@
 										</goals>
 									</pluginExecutionFilter>
 									<action>
-										<ignore></ignore>
+<!--										<ignore></ignore>-->
 									</action>
 								</pluginExecution>
-								<pluginExecution>
-									<pluginExecutionFilter>
-										<groupId>
-											com.nativelibs4java
-										</groupId>
-										<artifactId>
-											maven-jnaerator-plugin
-										</artifactId>
-										<versionRange>
-											[0.12,)
-										</versionRange>
-										<goals>
-											<goal>generate</goal>
-										</goals>
-									</pluginExecutionFilter>
-									<action>
-										<ignore></ignore>
-									</action>
-								</pluginExecution>
+<!--								<pluginExecution>-->
+<!--									<pluginExecutionFilter>-->
+<!--										<groupId>-->
+<!--											com.nativelibs4java-->
+<!--										</groupId>-->
+<!--										<artifactId>-->
+<!--											maven-jnaerator-plugin-->
+<!--										</artifactId>-->
+<!--										<versionRange>-->
+<!--											[0.12,)-->
+<!--										</versionRange>-->
+<!--										<goals>-->
+<!--											<goal>generate</goal>-->
+<!--										</goals>-->
+<!--									</pluginExecutionFilter>-->
+<!--									<action>-->
+<!--										<ignore></ignore>-->
+<!--									</action>-->
+<!--								</pluginExecution>-->
 							</pluginExecutions>
 						</lifecycleMappingMetadata>
 					</configuration>
