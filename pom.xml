@@ -316,9 +316,9 @@
 	</build>
 	<dependencies>
 		<dependency>
-			<groupId>com.nativelibs4java</groupId>
-			<artifactId>jnaerator-runtime</artifactId>
-			<version>0.12</version>
+			<groupId>net.java.dev.jna</groupId>
+			<artifactId>jna</artifactId>
+			<version>5.8.0</version>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
