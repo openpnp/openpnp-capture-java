@@ -19,9 +19,9 @@ mkdir -p openpnp-capture/binaries/windows-x86_64
 mkdir -p openpnp-capture/binaries/linux-x86_64
 mkdir -p openpnp-capture/binaries/linux-aarch64
 
-curl -L -o openpnp-capture/binaries/darwin-x86_64/libopenpnp-capture.dylib https://github.com/openpnp/openpnp-capture/releases/download/$1/libopenpnp-capture.dylib
-curl -L -o openpnp-capture/binaries/darwin-aarch64/libopenpnp-capture.dylib https://github.com/openpnp/openpnp-capture/releases/download/$1/libopenpnp-capture.dylib
-curl -L -o openpnp-capture/binaries/windows-x86_32/openpnp-capture.dll https://github.com/openpnp/openpnp-capture/releases/download/$1/openpnp-capture_x86_32.dll
-curl -L -o openpnp-capture/binaries/windows-x86_64/openpnp-capture.dll https://github.com/openpnp/openpnp-capture/releases/download/$1/openpnp-capture_x86_64.dll
-curl -L -o openpnp-capture/binaries/linux-x86_64/libopenpnp-capture.so https://github.com/openpnp/openpnp-capture/releases/download/$1/libopenpnp-capture.so
-curl -L -o openpnp-capture/binaries/linux-aarch64/libopenpnp-capture.so https://github.com/openpnp/openpnp-capture/releases/download/$1/libopenpnp-capture-arm64.so
+curl -L -o openpnp-capture/binaries/darwin-x86_64/libopenpnp-capture.dylib https://github.com/openpnp/openpnp-capture/releases/download/$1/libopenpnp-capture-macos-latest-x86_64.dylib
+curl -L -o openpnp-capture/binaries/darwin-aarch64/libopenpnp-capture.dylib https://github.com/openpnp/openpnp-capture/releases/download/$1/libopenpnp-capture-macos-latest-aarch64.dylib
+curl -L -o openpnp-capture/binaries/windows-x86_32/openpnp-capture.dll https://github.com/openpnp/openpnp-capture/releases/download/$1/openpnp-capture_Win32.dll
+curl -L -o openpnp-capture/binaries/windows-x86_64/openpnp-capture.dll https://github.com/openpnp/openpnp-capture/releases/download/$1/openpnp-capture_x64.dll
+curl -L -o openpnp-capture/binaries/linux-x86_64/libopenpnp-capture.so https://github.com/openpnp/openpnp-capture/releases/download/$1/libopenpnp-capture-ubuntu-latest-x86_64.so
+curl -L -o openpnp-capture/binaries/linux-aarch64/libopenpnp-capture.so https://github.com/openpnp/openpnp-capture/releases/download/$1/libopenpnp-capture-ubuntu-latest-aarch64.so
