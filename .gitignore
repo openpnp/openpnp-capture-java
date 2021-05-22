@@ -3,3 +3,12 @@ dependency-reduced-pom.xml
 .classpath
 .project
 .settings
+.idea
+*.iml
+target/checkstyle-checker.xml
+target/checkstyle-header.txt
+target/checkstyle-result.xml
+target/checkstyle-rules.xml
+target/classes/
+target/maven-status/
+target/surefire-reports/
