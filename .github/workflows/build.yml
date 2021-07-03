@@ -30,7 +30,7 @@ jobs:
       - name: Build
         run: |
           ./scripts/download-openpnp-capture.sh v0.0.23
-          mvn package
+          mvn -Dmaven.test.skip package
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v2

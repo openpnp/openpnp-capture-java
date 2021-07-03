@@ -11,4 +11,6 @@ target/checkstyle-result.xml
 target/checkstyle-rules.xml
 target/classes/
 target/maven-status/
+target/maven-archiver
 target/surefire-reports/
+target/test-classes
