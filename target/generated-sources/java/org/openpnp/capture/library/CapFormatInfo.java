@@ -10,15 +10,15 @@ import java.util.List;
  * For help, please visit <a href="http://nativelibs4java.googlecode.com/">NativeLibs4Java</a> , <a href="http://rococoa.dev.java.net/">Rococoa</a>, or <a href="http://jna.dev.java.net/">JNA</a>.
  */
 public class CapFormatInfo extends Structure {
-	/** < width in pixels */
+	/** width in pixels */
 	public int width;
-	/** < height in pixels */
+	/** height in pixels */
 	public int height;
-	/** < fourcc code (platform dependent) */
+	/** fourcc code (platform dependent) */
 	public int fourcc;
-	/** < frames per second */
+	/** frames per second */
 	public int fps;
-	/** < bits per pixel */
+	/** bits per pixel */
 	public int bpp;
 	public CapFormatInfo() {
 		super();
@@ -27,11 +27,11 @@ public class CapFormatInfo extends Structure {
 		return Arrays.asList("width", "height", "fourcc", "fps", "bpp");
 	}
 	/**
-	 * @param width < width in pixels<br>
-	 * @param height < height in pixels<br>
-	 * @param fourcc < fourcc code (platform dependent)<br>
-	 * @param fps < frames per second<br>
-	 * @param bpp < bits per pixel
+	 * @param width <br>width in pixels<br>
+	 * @param height <br>height in pixels<br>
+	 * @param fourcc <br>fourcc code (platform dependent)<br>
+	 * @param fps <br>frames per second<br>
+	 * @param bpp <br>bits per pixel<br>
 	 */
 	public CapFormatInfo(int width, int height, int fourcc, int fps, int bpp) {
 		super();
