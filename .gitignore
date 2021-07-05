@@ -14,3 +14,10 @@ target/maven-status/
 target/maven-archiver
 target/surefire-reports/
 target/test-classes
+target/apidocs/
+target/javadoc-bundle-options/
+target/maven-javadoc-plugin-stale-data.txt
+target/openpnp-capture-java-0.0.23-javadoc.jar
+target/openpnp-capture-java-0.0.23-shaded.jar
+target/openpnp-capture-java-0.0.23-sources.jar
+target/openpnp-capture-java-0.0.23.jar
