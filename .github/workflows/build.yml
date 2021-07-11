@@ -28,11 +28,11 @@ jobs:
           gpg-passphrase: MAVEN_GPG_PASSPHRASE
 
       - name: Cache maven packages
-      - uses: actions/cache@v2
+        uses: actions/cache@v2
         with:
-           path: ~/.m2/repository
-           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-           restore-keys: ${{ runner.os }}-maven-
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-maven-
 
       - name: Build
         run: |
