@@ -37,6 +37,7 @@ jobs:
       - name: Build
         run: |
           ./scripts/download-openpnp-capture.sh v0.0.23
+          rm -rf target/classes/linux-x86_64
           mvn package
 
       - name: Upload Artifacts

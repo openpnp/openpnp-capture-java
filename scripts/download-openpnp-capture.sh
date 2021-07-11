@@ -39,6 +39,8 @@ curl -L -o target/classes/darwin-x86_64/libopenpnp-capture.dylib https://github.
 ##curl -L -o openpnp-capture/binaries/darwin-aarch64/libopenpnp-capture.dylib https://github.com/brainstorm/openpnp-capture/releases/download/$1/libopenpnp-capture-macos-latest-aarch64.dylib
 ##curl -L -o openpnp-capture/binaries/windows-x86_32/openpnp-capture.dll https://github.com/brainstorm/openpnp-capture/releases/download/$1/openpnp-capture_Win32.dll
 ##curl -L -o openpnp-capture/binaries/windows-x86_64/openpnp-capture.dll https://github.com/brainstorm/openpnp-capture/releases/download/$1/openpnp-capture_x64.dll
-#curl -l -o target/classes/linux-x86_64/libopenpnp-capture.so https://github.com/brainstorm/openpnp-capture/releases/download/$1/libopenpnp-capture-ubuntu-latest-x86_64.so
-curl -l -o target/classes/linux-x86-64/libopenpnp-capture.so https://github.com/brainstorm/openpnp-capture/releases/download/$1/libopenpnp-capture-ubuntu-latest-x86-64.so
+curl -L -o target/classes/linux-x86-64/libopenpnp-capture.so https://github.com/brainstorm/openpnp-capture/releases/download/$1/libopenpnp-capture-ubuntu-latest-x86_64.so
 curl -L -o target/classes/linux-aarch64/libopenpnp-capture.so https://github.com/brainstorm/openpnp-capture/releases/download/$1/libopenpnp-capture-ubuntu-latest-aarch64.so
+
+file target/classes/*/*.so
+file target/classes/*/*.dylib
