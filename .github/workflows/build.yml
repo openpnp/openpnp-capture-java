@@ -8,7 +8,8 @@ jobs:
   build: 
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
+        # os: [ubuntu-latest, macos-latest, windows-latest]
+        os: [windows-latest]
         java: [8]
 
     runs-on: ${{ matrix.os }}
@@ -37,6 +38,7 @@ jobs:
       - name: Build
         run: |
           ./scripts/download-openpnp-capture.sh v0.0.24
+          dir /s openpnp-capture
           mvn -B clean package
 
       - name: Upload Artifacts
