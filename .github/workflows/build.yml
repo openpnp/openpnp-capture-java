@@ -51,6 +51,7 @@ jobs:
         with:
             artifacts: "target/openpnp-capture-java*.jar"
             token: ${{ secrets.GITHUB_TOKEN }}
+            allowUpdates: true
 
       - name: Publish to Apache Maven Central
         if: github.repository == 'openpnp/openpnp-capture' && github.event_name == 'push' && contains(github.ref, 'refs/tags/')
