@@ -8,7 +8,7 @@ jobs:
   build: 
     strategy:
       matrix:
-        os: [ubuntu-18.04]
+        os: [ubuntu-latest]
         java: [8]
 
     runs-on: ${{ matrix.os }}
@@ -26,6 +26,13 @@ jobs:
           server-password: OSSRH_PASSWORD
           gpg-private-key: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
           gpg-passphrase: MAVEN_GPG_PASSPHRASE
+
+      - name: Cache maven packages
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-maven-
 
       - name: Build
         run: |
@@ -46,7 +53,7 @@ jobs:
             token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish to Apache Maven Central
-        if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
+        if: github.repository == 'openpnp/openpnp-capture' && github.event_name == 'push' && contains(github.ref, 'refs/tags/')
         run: mvn -B deploy
         env:
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
