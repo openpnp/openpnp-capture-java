@@ -36,7 +36,7 @@ jobs:
 
       - name: Build
         run: |
-          ./scripts/download-openpnp-capture.sh v0.0.23
+          ./scripts/download-openpnp-capture.sh v0.0.24
           mvn -B clean package
 
       - name: Upload Artifacts
