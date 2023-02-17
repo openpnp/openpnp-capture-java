@@ -48,5 +48,5 @@ To release a new version to Github Releases and Maven central:
 2. Update the version line in `.github/workflows/build.yml` to include that release name.
 3. Update the version in `pom.xml`. Should match release. Append `-n` for sub-releases.
 4. Commit and tag the changes with the new version number.
-5. Push to master.
+5. Push to main.
 7. Github Actions will build and deploy the release.

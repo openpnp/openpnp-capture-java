@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.openpnp</groupId>
 	<artifactId>openpnp-capture-java</artifactId>
-	<version>0.0.23</version>
+	<version>0.0.24</version>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
@@ -61,42 +61,6 @@
 					<excludes>
 					</excludes>
 				</configuration>
-			</plugin>
-
-			<!-- Generates binding using Jnaerator -->
-			<plugin>
-				<groupId>com.nativelibs4java</groupId>
-				<artifactId>maven-jnaerator-plugin</artifactId>
-				<version>0.12</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>generate</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-
-			<!-- Adds target/generated-sources to the source directory list so it 
-				will be automatically added in Eclipse -->
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>build-helper-maven-plugin</artifactId>
-				<version>3.0.0</version>
-				<executions>
-					<execution>
-						<id>add-source</id>
-						<phase>generate-sources</phase>
-						<goals>
-							<goal>add-source</goal>
-						</goals>
-						<configuration>
-							<sources>
-								<source>${project.build.directory}/generated-sources/java/</source>
-							</sources>
-						</configuration>
-					</execution>
-				</executions>
 			</plugin>
 
 			<!-- Creates a shaded "uber" jar that contains the entire library. -->
@@ -170,8 +134,8 @@
 										<module name="TypeName">
 											<property name="format" value="^[A-Z][a-zA-Z0-9_]*$" />
 										</module>
-										<module name="MethodName">
-										</module>
+										<!-- <module name="MethodName">
+										</module> -->
 										<module name="LocalVariableName">
 											<property name="format" value="^[a-z][a-zA-Z0-9_]*$" />
 										</module>
@@ -209,7 +173,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>2.9.1</version>
+				<version>3.3.0</version>
 				<configuration>
 					<additionalparam>-Xdoclint:none</additionalparam>
 				</configuration>
@@ -235,7 +199,7 @@
 					<autoReleaseAfterClose>false</autoReleaseAfterClose>
 				</configuration>
 			</plugin>
-
+			
 			<!-- Signs artifacts before deployment -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -285,26 +249,6 @@
 										</goals>
 									</pluginExecutionFilter>
 									<action>
-										<ignore></ignore>
-									</action>
-								</pluginExecution>
-								<pluginExecution>
-									<pluginExecutionFilter>
-										<groupId>
-											com.nativelibs4java
-										</groupId>
-										<artifactId>
-											maven-jnaerator-plugin
-										</artifactId>
-										<versionRange>
-											[0.12,)
-										</versionRange>
-										<goals>
-											<goal>generate</goal>
-										</goals>
-									</pluginExecutionFilter>
-									<action>
-										<ignore></ignore>
 									</action>
 								</pluginExecution>
 							</pluginExecutions>
@@ -316,9 +260,9 @@
 	</build>
 	<dependencies>
 		<dependency>
-			<groupId>com.nativelibs4java</groupId>
-			<artifactId>jnaerator-runtime</artifactId>
-			<version>0.12</version>
+			<groupId>net.java.dev.jna</groupId>
+			<artifactId>jna</artifactId>
+			<version>5.13.0</version>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
