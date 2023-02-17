@@ -54,7 +54,7 @@ jobs:
             allowUpdates: true
 
       - name: Publish to Apache Maven Central
-        if: github.repository == 'openpnp/openpnp-capture' && github.event_name == 'push' && contains(github.ref, 'refs/tags/')
+        if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
         run: mvn -B deploy
         env:
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
