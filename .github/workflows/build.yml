@@ -1,3 +1,6 @@
+# TODO Add publishing to github Packages to speed up the distribution.
+# https://docs.github.com/en/actions/publishing-packages/publishing-java-packages-with-maven#publishing-packages-to-the-maven-central-repository-and-github-packages
+
 name: Build OpenPnP Capture Java Distribution
 
 on: 
@@ -36,7 +39,7 @@ jobs:
 
       - name: Build
         run: |
-          ./scripts/download-openpnp-capture.sh v0.0.25
+          ./scripts/download-openpnp-capture.sh v0.0.26
           mvn -B clean package
 
       - name: Upload Artifacts
@@ -60,4 +63,3 @@ jobs:
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
           MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
-
