@@ -16,7 +16,8 @@ import java.nio.IntBuffer;
 public interface OpenpnpCaptureLibrary extends Library {
 	public static final String JNA_LIBRARY_NAME = "openpnp-capture";
 	public static final NativeLibrary JNA_NATIVE_LIB = NativeLibrary.getInstance(OpenpnpCaptureLibrary.JNA_LIBRARY_NAME);
-	public static final OpenpnpCaptureLibrary INSTANCE = (OpenpnpCaptureLibrary) Native.loadLibrary(OpenpnpCaptureLibrary.JNA_LIBRARY_NAME, OpenpnpCaptureLibrary.class);
+	//public static final OpenpnpCaptureLibrary INSTANCE = (OpenpnpCaptureLibrary) Native.loadLibrary(OpenpnpCaptureLibrary.JNA_LIBRARY_NAME, OpenpnpCaptureLibrary.class);
+	public static final OpenpnpCaptureLibrary INSTANCE = Native.load(OpenpnpCaptureLibrary.JNA_LIBRARY_NAME, OpenpnpCaptureLibrary.class);
 	/** <i>native declaration : /Users/romanvg/dev/openpnp-capture/include/openpnp-capture.h</i> */
 	public static final int CAPPROPID_EXPOSURE = (int)1;
 	/** <i>native declaration : /Users/romanvg/dev/openpnp-capture/include/openpnp-capture.h</i> */
