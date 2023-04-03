@@ -22,11 +22,11 @@ curl -L -o openpnp-capture/binaries/darwin-aarch64/libopenpnp-capture.dylib \
 
 mkdir -p openpnp-capture/binaries/linux-x86-64
 curl -L -o openpnp-capture/binaries/linux-x86-64/libopenpnp-capture.so \
-    https://github.com/openpnp/openpnp-capture/releases/download/$1/libopenpnp-capture-ubuntu-latest-x86_64.so
+    https://github.com/openpnp/openpnp-capture/releases/download/$1/libopenpnp-capture-ubuntu-20.04-x86_64.so
 
 mkdir -p openpnp-capture/binaries/linux-aarch64
 curl -L -o openpnp-capture/binaries/linux-aarch64/libopenpnp-capture.so \
-    https://github.com/openpnp/openpnp-capture/releases/download/$1/libopenpnp-capture-ubuntu-latest-arm64.so
+    https://github.com/openpnp/openpnp-capture/releases/download/$1/libopenpnp-capture-ubuntu-20.04-arm64.so
 
 mkdir -p openpnp-capture/binaries/win32-x86-64
 curl -L -o openpnp-capture/binaries/win32-x86-64/openpnp-capture.dll \
